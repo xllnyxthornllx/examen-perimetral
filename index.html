@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen: Seguridad Perimetral</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Pantalla de Inicio -->
+        <div id="start-screen" class="card">
+            <h1>🛡️ Simulador de Examen</h1>
+            <h2>Seguridad Perimetral</h2>
+            <div class="info-box">
+                <p><strong>Temario:</strong> Linux Firewall, Snort, Fortigate.</p>
+                <p><strong>Preguntas:</strong> 40</p>
+                <p><strong>Escala:</strong> 0 - 20</p>
+            </div>
+            <button id="start-btn" class="btn primary-btn">Comenzar Examen</button>
+        </div>
+
+        <!-- Pantalla de Preguntas -->
+        <div id="quiz-screen" class="card hidden">
+            <div class="header">
+                <span id="progress">Pregunta 1 de 40</span>
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+            </div>
+            <div id="module-tag" class="tag">Firewall Linux</div>
+            <h3 id="question-text">Cargando pregunta...</h3>
+            <div id="options-container" class="options">
+                <!-- Opciones cargadas por JS -->
+            </div>
+            <button id="next-btn" class="btn secondary-btn hidden">Siguiente Pregunta</button>
+        </div>
+
+        <!-- Pantalla de Resultados -->
+        <div id="result-screen" class="card hidden">
+            <h1>Examen Finalizado</h1>
+            <div class="result-box">
+                <div class="score-label">Tu Nota:</div>
+                <div id="final-score" class="score">15.00</div>
+                <div id="score-text">¡Has aprobado!</div>
+            </div>
+            <p id="stats-text">Correctas: 30 / 40</p>
+            <button id="restart-btn" class="btn primary-btn">Reintentar</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
