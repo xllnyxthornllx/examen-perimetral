@@ -25,7 +25,7 @@ const questions = [
     {
         module: "Firewall Linux",
         question: "¿Qué tabla de iptables se utiliza para el Enmascaramiento de Red (Source NAT)?",
-        options: [\"filter\", \"mangle\", \"nat\", \"security\"],
+        options: ["filter", "mangle", "nat", "security"],
         answer: "nat"
     },
     {
@@ -295,27 +295,23 @@ let currentQuestionIndex = 0;
 let score = 0;
 let shuffledQuestions = [];
 
-const startScreen = document.getElementById('start-screen');
-const quizScreen = document.getElementById('quiz-screen');
-const resultScreen = document.getElementById('result-screen');
-const questionText = document.getElementById('question-text');
-const optionsContainer = document.getElementById('options-container');
-const progressText = document.getElementById('progress');
-const progressFill = document.getElementById('progress-fill');
-const moduleTag = document.getElementById('module-tag');
-const nextBtn = document.getElementById('next-btn');
-const finalScoreElement = document.getElementById('final-score');
-const scoreTextElement = document.getElementById('score-text');
-const statsTextElement = document.getElementById('stats-text');
+// Esperar a que el DOM esté cargado
+document.addEventListener('DOMContentLoaded', () => {
+    const startBtn = document.getElementById('start-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-document.getElementById('start-btn').addEventListener('click', startQuiz);
-document.getElementById('restart-btn').addEventListener('click', startQuiz);
-nextBtn.addEventListener('click', () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < shuffledQuestions.length) {
-        showQuestion();
-    } else {
-        showResults();
+    if (startBtn) startBtn.addEventListener('click', startQuiz);
+    if (restartBtn) restartBtn.addEventListener('click', startQuiz);
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < shuffledQuestions.length) {
+                showQuestion();
+            } else {
+                showResults();
+            }
+        });
     }
 });
 
@@ -324,9 +320,9 @@ function startQuiz() {
     score = 0;
     shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
     
-    startScreen.classList.add('hidden');
-    resultScreen.classList.add('hidden');
-    quizScreen.classList.remove('hidden');
+    document.getElementById('start-screen').classList.add('hidden');
+    document.getElementById('result-screen').classList.add('hidden');
+    document.getElementById('quiz-screen').classList.remove('hidden');
     
     showQuestion();
 }
@@ -334,6 +330,11 @@ function startQuiz() {
 function showQuestion() {
     resetState();
     const question = shuffledQuestions[currentQuestionIndex];
+    const questionText = document.getElementById('question-text');
+    const moduleTag = document.getElementById('module-tag');
+    const progressText = document.getElementById('progress');
+    const progressFill = document.getElementById('progress-fill');
+
     questionText.innerText = question.question;
     moduleTag.innerText = question.module;
     progressText.innerText = `Pregunta ${currentQuestionIndex + 1} de ${shuffledQuestions.length}`;
@@ -341,7 +342,9 @@ function showQuestion() {
     const progressPercent = ((currentQuestionIndex) / shuffledQuestions.length) * 100;
     progressFill.style.width = `${progressPercent}%`;
 
+    const optionsContainer = document.getElementById('options-container');
     const options = [...question.options].sort(() => Math.random() - 0.5);
+    
     options.forEach(option => {
         const button = document.createElement('button');
         button.innerText = option;
@@ -352,6 +355,9 @@ function showQuestion() {
 }
 
 function resetState() {
+    const nextBtn = document.getElementById('next-btn');
+    const optionsContainer = document.getElementById('options-container');
+    
     nextBtn.classList.add('hidden');
     while (optionsContainer.firstChild) {
         optionsContainer.removeChild(optionsContainer.firstChild);
@@ -359,7 +365,10 @@ function resetState() {
 }
 
 function selectOption(button, selected, correct) {
+    const optionsContainer = document.getElementById('options-container');
+    const nextBtn = document.getElementById('next-btn');
     const isCorrect = selected === correct;
+    
     if (isCorrect) {
         score++;
         button.classList.add('correct');
@@ -382,9 +391,13 @@ function selectOption(button, selected, correct) {
 }
 
 function showResults() {
-    quizScreen.classList.add('hidden');
-    resultScreen.classList.remove('hidden');
+    document.getElementById('quiz-screen').classList.add('hidden');
+    document.getElementById('result-screen').classList.remove('hidden');
     
+    const finalScoreElement = document.getElementById('final-score');
+    const scoreTextElement = document.getElementById('score-text');
+    const statsTextElement = document.getElementById('stats-text');
+
     const finalGrade = (score / shuffledQuestions.length) * 20;
     finalScoreElement.innerText = finalGrade.toFixed(2);
     statsTextElement.innerText = `Correctas: ${score} / ${shuffledQuestions.length}`;
