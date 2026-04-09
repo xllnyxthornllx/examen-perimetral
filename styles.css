@@ -1,0 +1,235 @@
+:root {
+    --bg-color: #0d1117;
+    --card-bg: #161b22;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent-color: #2f81f7;
+    --correct-color: #238636;
+    --incorrect-color: #da3633;
+    --border-color: #30363d;
+    --font-main: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-box {
+    background: rgba(47, 129, 247, 0.1);
+    border: 1px solid rgba(47, 129, 247, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.info-box p {
+    margin: 10px 0;
+    color: var(--text-secondary);
+}
+
+.info-box strong {
+    color: var(--text-primary);
+}
+
+.btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    font-family: var(--font-main);
+}
+
+.primary-btn {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #4493f8;
+}
+
+.secondary-btn {
+    background-color: #30363d;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    margin-top: 20px;
+}
+
+.secondary-btn:hover {
+    background-color: #484f58;
+}
+
+/* Quiz Styles */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+#progress {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    background-color: var(--accent-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #1f6feb;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option-btn {
+    padding: 16px;
+    text-align: left;
+    background-color: #1c2128;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.option-btn:hover:not(.disabled) {
+    background-color: #2d333b;
+    border-color: #8b949e;
+}
+
+.option-btn.correct {
+    background-color: rgba(35, 134, 54, 0.2) !important;
+    border-color: var(--correct-color) !important;
+}
+
+.option-btn.incorrect {
+    background-color: rgba(218, 54, 51, 0.2) !important;
+    border-color: var(--incorrect-color) !important;
+}
+
+.disabled {
+    cursor: default;
+    opacity: 0.8;
+}
+
+/* Result Styles */
+.result-box {
+    margin: 40px 0;
+}
+
+.score-label {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.score {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin: 10px 0;
+    font-family: var(--font-mono);
+}
+
+#score-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#stats-text {
+    margin-bottom: 30px;
+    color: var(--text-secondary);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 500px) {
+    .card { padding: 25px; }
+    h1 { font-size: 1.5rem; }
+    h3 { font-size: 1.1rem; }
+}
