@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examen: Seguridad Perimetral</title>
+    <title>Examen: Seguridad Perimetral Avanzada</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -11,12 +11,13 @@
     <div class="container">
         <!-- Pantalla de Inicio -->
         <div id="start-screen" class="card">
-            <h1>🛡️ Simulador de Examen</h1>
+            <h1>🛡️ Simulador de Examen v2</h1>
             <h2>Seguridad Perimetral</h2>
             <div class="info-box">
                 <p><strong>Temario:</strong> Linux Firewall, Snort, Fortigate.</p>
-                <p><strong>Preguntas:</strong> 40</p>
-                <p><strong>Escala:</strong> 0 - 20</p>
+                <p><strong>Banco:</strong> +100 preguntas de estudio.</p>
+                <p><strong>Sesión:</strong> 40 preguntas al azar.</p>
+                <p><strong>Modo:</strong> Aprendizaje (Incluye explicaciones).</p>
             </div>
             <button id="start-btn" class="btn primary-btn">Comenzar Examen</button>
         </div>
@@ -24,7 +25,10 @@
         <!-- Pantalla de Preguntas -->
         <div id="quiz-screen" class="card hidden">
             <div class="header">
-                <span id="progress">Pregunta 1 de 40</span>
+                <div class="progress-info">
+                    <span id="progress">Pregunta 1 de 40</span>
+                    <span id="score-live">Nota: 0.00</span>
+                </div>
                 <div class="progress-bar">
                     <div id="progress-fill"></div>
                 </div>
@@ -34,6 +38,13 @@
             <div id="options-container" class="options">
                 <!-- Opciones cargadas por JS -->
             </div>
+            
+            <!-- Panel de Explicación (NUEVO) -->
+            <div id="explanation-box" class="explanation-box hidden">
+                <div class="exp-title">📚 Explicación Técnica:</div>
+                <p id="explanation-text"></p>
+            </div>
+
             <button id="next-btn" class="btn secondary-btn hidden">Siguiente Pregunta</button>
         </div>
 
@@ -45,8 +56,11 @@
                 <div id="final-score" class="score">15.00</div>
                 <div id="score-text">¡Has aprobado!</div>
             </div>
-            <p id="stats-text">Correctas: 30 / 40</p>
-            <button id="restart-btn" class="btn primary-btn">Reintentar</button>
+            <div class="stats-container">
+                <p id="stats-text">Correctas: 30 / 40</p>
+                <p id="rank-text">Rango: Especialista Jr.</p>
+            </div>
+            <button id="restart-btn" class="btn primary-btn">Reintentar Nuevo Examen</button>
         </div>
     </div>
     <script src="script.js"></script>
